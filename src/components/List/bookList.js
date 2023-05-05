@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Book from '../Book/book';
 
-function BookList() {
+function BookList({ onDelete }) {
   const booksArr = [
     {
       id: 1,
@@ -25,10 +25,12 @@ function BookList() {
       <div>
         <h1 className="h1">List of Books</h1>
         {books.map((book) => (
-          <Book key={book.id}
-          title={book.title}
-          author={book.author}
-          onDelete={() => onDelete(book.id)} />))}
+          <Book
+            key={book.id}
+            title={book.title}
+            author={book.author}
+            onDelete={() => onDelete(book.id)} />))
+        }
       </div>
     </>
   );

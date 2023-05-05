@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import './book.css';
 import PropTypes from 'prop-types';
 
-Book.propTypes = {
-  title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired
-};
-
 function Book({ title, author, onDelete }) {
   const [isDelete, setIsDelete] = useState(false);
 
@@ -32,5 +26,11 @@ function Book({ title, author, onDelete }) {
     </>
   );
 }
+
+Book.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default Book;
