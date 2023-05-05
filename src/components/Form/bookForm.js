@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './bookForm.css';
 
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+};
 function Form({ onSubmit }) {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');

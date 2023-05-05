@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import './book.css';
+import PropTypes from 'prop-types';
+
+Book.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired
+};
 
 function Book({ title, author, onDelete }) {
   const [isDelete, setIsDelete] = useState(false);
