@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import './book.css';
 
-function Book ({title, author, onDelete}) {
+function Book({ title, author, onDelete }) {
   const [isDelete, setIsDelete] = useState(false);
 
   function handleDelete() {
@@ -13,11 +13,12 @@ function Book ({title, author, onDelete}) {
 
   return (
     <>
-    <div className="book">
-      <h2 className="title">{title} by {author}
-      {!isDelete && <button onClick={handleDelete} className="click">Delete</button>}
-      {isDelete && <p>Deleting...</p>}</h2>
-    </div>
+      <div className="book">
+        <h2 className="title">
+          {title} by {author}
+          {!isDelete && <button type="button" onClick={handleDelete} className="click">Delete</button>}
+          {isDelete && <p>Deleting...</p>}</h2>
+      </div>
     </>
   )
 }

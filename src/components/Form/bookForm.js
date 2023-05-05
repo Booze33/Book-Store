@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import './bookForm.css';
 
-function Form ({onSubmit}) {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
+function Form({ onSubmit }) {
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
 
   function HandleSubmit(e) {
     e.preventDefault();
@@ -21,7 +21,7 @@ function Form ({onSubmit}) {
       </label>
       <button type="submit" className="button">Add Book</button>
     </form>
-  )
+  );
 }
 
 export default Form;
