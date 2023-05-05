@@ -13,12 +13,8 @@ function Form({ onSubmit }) {
 
   return (
     <form onSubmit={HandleSubmit}>
-      <label>
-        <input className="title-1" type="text" placeholder="Title" value={title} onChange={(event) => setTitle(event.target.value)} />
-      </label>
-      <label>
-        <input className="author-1" type="text" placeholder="Author" value={author} onChange={(event) => setAuthor(event.target.value)} />
-      </label>
+      <input className="title-1" type="text" placeholder="Title" value={title} onChange={(event) => setTitle(event.target.value)} />
+      <input className="author-1" type="text" placeholder="Author" value={author} onChange={(event) => setAuthor(event.target.value)} />
       <button type="submit" className="button">Add Book</button>
     </form>
   );
