@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Book from '../Book/book';
 import PropTypes from 'prop-types';
+import Book from '../Book/book';
 
 function BookList({ onDelete }) {
   const booksArr = [
@@ -30,7 +30,8 @@ function BookList({ onDelete }) {
             key={book.id}
             title={book.title}
             author={book.author}
-            onDelete={() => onDelete(book.id)} />
+            onDelete={() => onDelete(book.id)}
+          />
         ))}
       </div>
     </>
@@ -38,7 +39,7 @@ function BookList({ onDelete }) {
 }
 
 BookList.propTypes = {
-  onDelete: PropTypes.func.isRequired
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default BookList;
