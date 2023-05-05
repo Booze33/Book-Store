@@ -1,4 +1,4 @@
-import React from '@testing-library/jest-dom';
+import React from 'react';
 
 function Category() {
   return (

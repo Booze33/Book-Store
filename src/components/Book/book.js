@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import './book.css';
 
 function Book({ title, author, onDelete }) {
@@ -16,9 +15,9 @@ function Book({ title, author, onDelete }) {
     <>
       <div className="book">
         <h2 className="title">
-          {title}
-          by
-          {author}
+          {title }
+          :  by
+          { author}
           {!isDelete && <button type="button" onClick={handleDelete} className="click">Delete</button>}
           {isDelete && <p>Deleting...</p>}
         </h2>
