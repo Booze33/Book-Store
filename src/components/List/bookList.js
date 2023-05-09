@@ -1,33 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Book from '../Book/book';
 
 function BookList({ onDelete }) {
-  const booksArr = [
-    {
-      id: 1,
-      title: 'Swamp of Ducks ',
-      author: ' Jack Blue',
-    },
-    {
-      id: 2,
-      title: 'First sight Kill ',
-      author: ' Robin Jane',
-    },
-    {
-      id: 3,
-      title: 'Crashsite Camp  ',
-      author: ' John COD',
-    },
-  ];
-  const [books] = useState(booksArr);
+  const books = useSelector((state) => state.books);
   return (
     <>
       <div>
         <h1 className="h1">List of Books</h1>
         {books.map((book) => (
           <Book
-            key={book.id}
+            key={book.item_id}
             title={book.title}
             author={book.author}
             onDelete={() => onDelete(book.id)}

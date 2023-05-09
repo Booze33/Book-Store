@@ -1,36 +1,32 @@
-import React, { useState } from 'react';
-import './book.css';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { removeBook } from '../../redux/books/bookSplice';
+import './book.css';
 
-function Book({ title, author, onDelete }) {
-  const [isDelete, setIsDelete] = useState(false);
+function Book({ id, title, author }) {
+  const dispatch = useDispatch();
 
-  function handleDelete() {
-    setIsDelete(true);
-    setTimeout(() => {
-      onDelete();
-    }, 1000);
-  }
+  const handleDelete = () => {
+    dispatch(removeBook(id));
+  };
 
   return (
-    <>
-      <div className="book">
-        <h2 className="title">
-          {title }
-          :  by
-          { author}
-          {!isDelete && <button type="button" onClick={handleDelete} className="click">Delete</button>}
-          {isDelete && <p>Deleting...</p>}
-        </h2>
-      </div>
-    </>
+    <div className="book">
+      <h2 className="title">
+        {title}
+        {' by '}
+        {author}
+        <button type="button" onClick={handleDelete} className="click">Delete</button>
+      </h2>
+    </div>
   );
 }
 
 Book.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default Book;
