@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
+// import PropTypes from 'prop-types';
+import { addBook } from '../../redux/books/bookSplice';
 import './bookForm.css';
 
-function Form({ onSubmit }) {
+function Form() {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
 
   function HandleSubmit(e) {
     e.preventDefault();
 
-    onSubmit(title, author);
+    const book = {
+      item_id: nanoid(),
+      title,
+      author,
+      category: 'Uncategorized',
+    };
+    dispatch(addBook(book));
+    setTitle('');
+    setAuthor('');
   }
 
   return (
@@ -20,9 +32,5 @@ function Form({ onSubmit }) {
     </form>
   );
 }
-
-Form.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
 
 export default Form;
