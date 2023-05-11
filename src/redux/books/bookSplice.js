@@ -49,23 +49,27 @@ const bookSplice = createSlice({
       state.books.push(action.payload);
     });
 
-    builder.addCase(DeleteBook.fulfilled, (state, action) => {
-      state.books = state.books.filter((book) => book.item_id !== action.payload);
-    });
+    builder.addCase(DeleteBook.fulfilled, (state, action) => ({
+      ...state,
+      books: state.books.filter((book) => book.item_id !== action.payload),
+    }));
 
-    builder.addCase(fetchBooks.pending, (state) => {
-      state.isLoading = true;
-    });
+    builder.addCase(fetchBooks.pending, (state) => ({
+      ...state,
+      isLoading: true,
+    }));
 
-    builder.addCase(fetchBooks.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.books = action.payload;
-    });
+    builder.addCase(fetchBooks.fulfilled, (state, action) => ({
+      ...state,
+      isLoading: false,
+      books: action.payload,
+    }));
 
-    builder.addCase(fetchBooks.rejected, (state) => {
-      state.isLoading = false;
-      state.isError = true;
-    });
+    builder.addCase(fetchBooks.rejected, (state) => ({
+      ...state,
+      isLoading: false,
+      isError: true,
+    }));
   },
 });
 

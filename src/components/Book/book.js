@@ -5,8 +5,12 @@ import { DeleteBook } from '../../redux/books/bookSplice';
 import './book.css';
 
 function Book(props) {
-  const { id, title, author, onDelete } = props;
-  console.log(title)
+  const {
+    id,
+    title,
+    author,
+    onDelete,
+  } = props;
   const dispatch = useDispatch();
 
   const handleDelete = () => {
@@ -38,7 +42,10 @@ function Book(props) {
       <div className="book-progress">
         <div className="progress-bar" />
         <p className="current-chapter">
-          Chapter <span>1</span>
+          Chapter
+          <span>
+            1
+          </span>
         </p>
         <button type="button">Update Progress</button>
       </div>
