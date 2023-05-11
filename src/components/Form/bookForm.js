@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-// import PropTypes from 'prop-types';
-import { addBook } from '../../redux/books/bookSplice';
+import { AddBook } from '../../redux/books/bookSplice';
 import './bookForm.css';
 
 function Form() {
@@ -10,7 +9,7 @@ function Form() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
 
-  function HandleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
     const book = {
@@ -19,16 +18,33 @@ function Form() {
       author,
       category: 'Uncategorized',
     };
-    dispatch(addBook(book));
+
+    dispatch(AddBook(book));
     setTitle('');
     setAuthor('');
   }
 
   return (
-    <form onSubmit={HandleSubmit}>
-      <input className="title-1" type="text" placeholder="Title" value={title} onChange={(event) => setTitle(event.target.value)} />
-      <input className="author-1" type="text" placeholder="Author" value={author} onChange={(event) => setAuthor(event.target.value)} />
-      <button type="submit" className="button">Add Book</button>
+    <form onSubmit={handleSubmit}>
+      <input
+        className="title-1"
+        type="text"
+        placeholder="Title"
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
+        name="title"
+      />
+      <input
+        className="author-1"
+        type="text"
+        placeholder="Author"
+        value={author}
+        onChange={(event) => setAuthor(event.target.value)}
+        name="author"
+      />
+      <button type="submit" className="button">
+        Add Book
+      </button>
     </form>
   );
 }
