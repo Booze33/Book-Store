@@ -1,22 +1,30 @@
 header {
   margin-top: 0;
+  margin-bottom: 2rem;
   width: 100vw;
   height: 5rem;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  border-bottom: 1px solid rgb(205, 205, 205);
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-button {
-  margin: 0 1rem 0 1rem;
-  background-color: transparent;
-  border: none;
+.h1 {
+  color: #0290ff;
+  font-size: 2.5rem;
+  font-weight: 900;
 }
 
-.button {
+.button-2 {
+  border: none;
+  background-color: #fff;
+  margin-left: 2.5rem;
+}
+
+.nav-button {
+  color: #000;
+  font-size: 1.5rem;
   text-decoration: none;
-  font-size: 25px;
 }

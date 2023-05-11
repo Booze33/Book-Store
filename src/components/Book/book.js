@@ -25,11 +25,11 @@ function Book(props) {
         <p className="title">{title}</p>
         <p className="author">{author}</p>
         <div className="book-menu">
-          <button type="button">Comments</button>
-          <button type="button" onClick={handleDelete}>
+          <button className="button-3 line" type="button">Comments</button>
+          <button className="button-3 line" type="button" onClick={handleDelete}>
             Remove
           </button>
-          <button type="button">Edit</button>
+          <button className="button-3" type="button">Edit</button>
         </div>
       </div>
       <div className="book-status">
@@ -41,13 +41,14 @@ function Book(props) {
       </div>
       <div className="book-progress">
         <div className="progress-bar" />
-        <p className="current-chapter">
+        <p className="current-chapter">Current Chapter</p>
+        <p className="chapter">
           Chapter
           <span>
-            1
+            17
           </span>
         </p>
-        <button type="button">Update Progress</button>
+        <button className="button-4" type="button">Update Progress</button>
       </div>
     </div>
   );

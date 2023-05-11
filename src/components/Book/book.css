@@ -1,33 +1,93 @@
-.title {
-  font-size: 20px;
-  font-weight: bold;
-  width: 85vw;
+.book {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  width: 90vw;
+  margin: 1rem 1rem 0 3.5%;
+  padding: 1rem;
+  border: 1px solid #d2d2d2;
   border-radius: 4px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.category {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #c5c5c5;
+  font-weight: 700;
+}
+
+.title {
+  font-size: 35px;
+  color: #000;
+  font-weight: 900;
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: -0.4rem;
 }
 
 .author {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-weight: bold;
-  font-size: 23px;
-  border-radius: 4px;
-  width: 85vw;
+  font-size: 21px;
+  color: #0290ff;
+  margin-top: -2.3rem;
+  font-weight: 100;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.book {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #a8a5a5;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  width: 85vw;
-  margin-left: 5.2rem;
+.button-3 {
+  border: none;
+  font-size: 19px;
+  color: #0290ff;
+  margin-top: -2.3rem;
+  margin-right: 1rem;
+  margin-left: -0.3rem;
+  font-weight: 100;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-.click {
-  border: 1px solid #000;
-  border-radius: 2px;
-  font-size: 12px;
-  margin-left: 90%;
+.line {
+  border-right: #c5c5c5 1px solid;
+  padding-right: 1.5rem;
+}
+
+.percentage {
+  font-size: 40px;
+}
+
+.completed {
+  font-size: 17px;
+  color: #c5c5c5;
+  margin-top: -2.8rem;
+}
+
+.book-progress {
+  border-left: 1px solid #d7d7d7;
+  padding-left: 3rem;
+}
+
+.current-chapter {
+  font-size: 21px;
+  color: #c2c2c2;
+  font-weight: 100;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.chapter {
+  font-size: 22px;
+  color: #000;
+  font-weight: 100;
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: -1rem;
+}
+
+.button-4 {
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+  font-weight: 100;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #0290ff;
+  border: none;
+  padding: 0.4rem 1.5rem 0.4rem 1.5rem;
+  border-radius: 4px;
 }
