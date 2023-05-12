@@ -12,15 +12,28 @@ header {
 }
 
 .h1 {
+  width: 15rem;
+  height: 2.313rem;
+  margin: 0.375rem 2.938rem 0.125rem 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.875rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
   color: #0290ff;
-  font-size: 2.5rem;
-  font-weight: 900;
+}
+
+.just {
+  display: flex;
 }
 
 .button-2 {
   border: none;
   background-color: #fff;
-  margin-left: 2.5rem;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 .nav-button {
