@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BsPersonFill } from 'react-icons/bs';
 import './nav.css';
 
 function Nav() {
@@ -16,7 +17,9 @@ function Nav() {
           </button>
         </nav>
       </div>
-      <div className="Mask" />
+      <div className="Mask">
+        <BsPersonFill className="profile" />
+      </div>
     </header>
   );
 }
