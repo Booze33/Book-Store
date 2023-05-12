@@ -18,7 +18,6 @@ function BookList() {
   return (
     <>
       <div>
-        <h1 className="h1">Your Books</h1>
         {Array.isArray(books) && books.length > 0
           ? books.map((book) => (
             <Book

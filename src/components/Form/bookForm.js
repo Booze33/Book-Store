@@ -26,6 +26,7 @@ function Form() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h2 className="h2">ADD NEW BOOK </h2>
       <input
         className="title-1"
         type="text"
@@ -42,7 +43,7 @@ function Form() {
         onChange={(event) => setAuthor(event.target.value)}
         name="author"
       />
-      <button type="submit" className="button">
+      <button type="submit" className="button-5">
         Add Book
       </button>
     </form>
