@@ -10,7 +10,7 @@ function Nav() {
         <h1 className="h1">BookStore CMS</h1>
         <nav>
           <button className="button-2" type="button">
-            <Link className="nav-button" to="/">Books</Link>
+            <Link className="nav-button" to="/books">Books</Link>
           </button>
           <button className="button-2" type="button">
             <Link className="nav-button" to="/categories">Categories</Link>
