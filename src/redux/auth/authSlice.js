@@ -1,70 +1,44 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { loginUserAPI, registerUserAPI, logoutUserAPI } from './api_url';
+import { createSlice } from '@reduxjs/toolkit';
 
-// Define initial state
 const initialState = {
+  token: null,
   user: null,
-  status: 'idle',
+  loading: false,
   error: null,
 };
 
-// Create async thunks for registration, login, and logout
-export const registerUser = createAsyncThunk('auth/register', async (userData) => {
-  const response = await registerUserAPI(userData);
-  console.log(response);
-  return response.data;
-});
-
-export const loginUser = createAsyncThunk('auth/login', async (credentials) => {
-  const response = await loginUserAPI(credentials);
-  console.log(response);
-  return response.data;
-});
-
-export const logoutUser = createAsyncThunk('auth/logout', async () => {
-  await logoutUserAPI();
-});
-
-// Create the authentication slice
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(registerUser.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(registerUser.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.user = action.payload;
-        state.error = null;
-      })
-      .addCase(registerUser.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
-      })
-      .addCase(loginUser.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.user = action.payload;
-        state.error = null;
-      })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
-      })
-      .addCase(logoutUser.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(logoutUser.fulfilled, (state) => {
-        state.status = 'idle';
-        state.user = null;
-        state.error = null;
-      });
+  reducers: {
+    authRequest: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    authSuccess: (state, action) => {
+      state.loading = false;
+      state.token = action.payload.token;
+      state.user = action.payload.user;
+      state.error = null;
+      state.isAuthenticated = true;
+    },
+    authFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+      state.isAuthenticated = false;
+    },
+    logout: (state) => {
+      state.token = null;
+      state.user = null;
+      state.isAuthenticated = false;
+    },
   },
 });
+export const {
+  authRequest,
+  authSuccess,
+  authFailure,
+  logout,
+} = authSlice.actions;
 
 export default authSlice.reducer;
