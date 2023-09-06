@@ -1,3 +1,7 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable comma-dangle */
+/* eslint-disable no-confusing-arrow */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-useless-catch */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
@@ -34,6 +38,21 @@ export const deleteBook = createAsyncThunk(
     try {
       await axios.delete(`${apiURL}/books/${bookId}`);
       return bookId;
+    } catch (error) {
+      throw error;
+    }
+  },
+);
+
+export const editBook = createAsyncThunk(
+  'book/editBook',
+  async (book) => {
+    const { id, ...formData } = book;
+    try {
+      const response = await axios.patch(`${apiURL}/books/${id}`, {
+        book: formData,
+      });
+      return response.data;
     } catch (error) {
       throw error;
     }
@@ -92,6 +111,24 @@ const bookSlice = createSlice({
     });
 
     builder.addCase(deleteBook.rejected, (state) => {
+      state.isLoading = false;
+      state.isError = true;
+    });
+
+    builder.addCase(editBook.pending, (state) => {
+      state.isLoading = true;
+      state.isError = undefined;
+    });
+
+    builder.addCase(editBook.fulfilled, (state, action) => {
+      state.isLoading = false;
+      // Update the edited book in the state
+      state.books = state.books.map((book) =>
+        book.id === action.payload.id ? action.payload : book
+      );
+    });
+
+    builder.addCase(editBook.rejected, (state) => {
       state.isLoading = false;
       state.isError = true;
     });

@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../redux/category/categorySlice';
+import Loader from '../Loader/loader';
 
 function Category() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function Category() {
     <div>
       <h1>Categories</h1>
       {isLoading ? (
-        <p>Loading categories...</p>
+        <Loader />
       ) : isError ? (
         <p>Error loading categories.</p>
       ) : (

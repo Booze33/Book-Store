@@ -1,8 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { fetchBooks, deleteBook } from '../../redux/books/bookSlice';
+import Loader from '../Loader/loader';
 
 function Book() {
   const dispatch = useDispatch();
@@ -35,7 +37,7 @@ function Book() {
     <div>
       <h1>Categories</h1>
       {isLoading ? (
-        <p>Loading categories...</p>
+        <Loader />
       ) : isError ? (
         <p>Error loading categories.</p>
       ) : (
@@ -45,6 +47,7 @@ function Book() {
               <li>{book.title}</li>
               <li>{book.id}</li>
               <button type="button" onClick={() => confirmDelete(book.id)}>Delete</button>
+              <Link className="nav-link" to={`/edit_book/${book.id}`}>Edit</Link>
             </div>
           ))}
         </ul>
