@@ -17,11 +17,26 @@ export const fetchBooks = createAsyncThunk('books/getBooks', async () => {
 export const addBook = createAsyncThunk(
   'book/addBook',
   async (formData) => {
-    const response = await axios.post(`${apiURL}/books`, {
-      book: formData,
-    });
-    console.log(response);
-    return response.data;
+    try {
+      const response = await axios.post(`${apiURL}/books`, {
+        book: formData,
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+);
+
+export const deleteBook = createAsyncThunk(
+  'book/deleteBook',
+  async (bookId) => {
+    try {
+      await axios.delete(`${apiURL}/books/${bookId}`);
+      return bookId;
+    } catch (error) {
+      throw error;
+    }
   },
 );
 
@@ -51,17 +66,32 @@ const bookSlice = createSlice({
       state.isError = true;
     });
 
-    builder.addCase(addBook.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.books.push(action.payload);
-    });
-
     builder.addCase(addBook.pending, (state) => {
       state.isLoading = true;
       state.isError = undefined;
     });
 
+    builder.addCase(addBook.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.books.push(action.payload);
+    });
+
     builder.addCase(addBook.rejected, (state) => {
+      state.isLoading = false;
+      state.isError = true;
+    });
+
+    builder.addCase(deleteBook.pending, (state) => {
+      state.isLoading = true;
+      state.isError = undefined;
+    });
+
+    builder.addCase(deleteBook.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.books = state.books.filter((book) => book.id !== action.payload);
+    });
+
+    builder.addCase(deleteBook.rejected, (state) => {
       state.isLoading = false;
       state.isError = true;
     });

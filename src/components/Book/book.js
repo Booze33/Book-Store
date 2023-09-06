@@ -1,7 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks } from '../../redux/books/bookSlice';
+import { toast } from 'react-hot-toast';
+import { fetchBooks, deleteBook } from '../../redux/books/bookSlice';
 
 function Book() {
   const dispatch = useDispatch();
@@ -10,9 +11,25 @@ function Book() {
   const isError = useSelector((state) => state.books.isError);
 
   useEffect(() => {
-    // Dispatch the fetchCategories action to retrieve categories
     dispatch(fetchBooks());
   }, [dispatch]);
+
+  const handleDelete = async (bookId) => {
+    try {
+      await dispatch(deleteBook(bookId));
+      toast.success('Book Deleted!');
+      dispatch(fetchBooks());
+    } catch (error) {
+      toast.error('Failed to delete the book.');
+    }
+  };
+
+  const confirmDelete = (bookId) => {
+    const result = window.confirm('Are you sure you want to delete this book?');
+    if (result) {
+      handleDelete(bookId);
+    }
+  };
 
   return (
     <div>
@@ -24,7 +41,11 @@ function Book() {
       ) : (
         <ul>
           {books.map((book) => (
-            <li key={book.id}>{book.title}</li>
+            <div key={book.id}>
+              <li>{book.title}</li>
+              <li>{book.id}</li>
+              <button type="button" onClick={() => confirmDelete(book.id)}>Delete</button>
+            </div>
           ))}
         </ul>
       )}
