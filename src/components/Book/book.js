@@ -1,18 +1,33 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable react/prop-types */
-// components/Book/book.js
-import React from 'react';
+/* eslint-disable no-nested-ternary */
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooks } from '../../redux/books/bookSlice';
 
-function Book({ id, title, author, category, onDelete }) {
+function Book() {
+  const dispatch = useDispatch();
+  const books = useSelector((state) => state.books.books);
+  const isLoading = useSelector((state) => state.books.isLoading);
+  const isError = useSelector((state) => state.books.isError);
+
+  useEffect(() => {
+    // Dispatch the fetchCategories action to retrieve categories
+    dispatch(fetchBooks());
+  }, [dispatch]);
+
   return (
-    <div className="book">
-      <div className="book-info">
-        <h3>Title: {title}</h3>
-        <p>Author: {author}</p>
-        <p>Category: {category}</p>
-      </div>
-      <button onClick={() => onDelete(id)} type="button">Delete</button>
+    <div>
+      <h1>Categories</h1>
+      {isLoading ? (
+        <p>Loading categories...</p>
+      ) : isError ? (
+        <p>Error loading categories.</p>
+      ) : (
+        <ul>
+          {books.map((book) => (
+            <li key={book.id}>{book.title}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

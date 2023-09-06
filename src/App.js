@@ -3,7 +3,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Nav from './components/navigation/nav';
 import Category from './components/Category/category';
-import Books from './components/Display/display';
+import Book from './components/Book/book';
 import Welcome from './components/Welcome/welcome';
 import BookForm from './components/Form/bookForm';
 import Register from './components/auth/register';
@@ -27,7 +27,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/books" element={<Books />} />
+          <Route path="/books" element={<Book />} />
           <Route path="/book_form" element={<BookForm />} />
           <Route path="/categories" element={<Category />} />
           <Route path="/sign_up" element={<Register />} />
