@@ -3,7 +3,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-boolean-value */
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -16,6 +16,10 @@ function EditBook() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.categories);
   const { bookId } = useParams();
+
+  const selectedBook = useSelector((state) =>
+    state.books.books.find((b) => b.id === bookId),
+  );
 
   const {
     register,
@@ -30,32 +34,25 @@ function EditBook() {
     },
   });
 
+  useMemo(() => {
+    if (selectedBook) {
+      setValue('title', selectedBook.title);
+      setValue('author', selectedBook.author);
+      setValue('category_id', selectedBook.category_id);
+    }
+  }, [selectedBook, setValue]);
+
   useEffect(() => {
     dispatch(fetchCategories());
-    dispatch(fetchBooks()).then(() => {
-      const book = useSelector((state) =>
-        state.books.books.find((b) => b.id === bookId),
-      );
-
-      if (book) {
-        setValue('title', book.title);
-        setValue('author', book.author);
-        setValue('category_id', book.category_id);
-      }
-    });
-  }, [dispatch, bookId, setValue]);
+    dispatch(fetchBooks());
+  }, [dispatch]);
 
   const onSubmit = (formData) => {
     const editedBook = { ...formData, id: bookId };
-    dispatch(editBook(editedBook))
-      .unwrap()
-      .then((updatedBook) => {
-        toast.success('Book edited successfully!');
-        navigate('/books');
-      })
-      .catch((error) => {
-        toast.error('Error updating book.');
-      });
+    dispatch(editBook(editedBook)).then(() => {
+      toast.success('Book edited successfully!');
+      navigate('/books');
+    });
   };
 
   return (
