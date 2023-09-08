@@ -91,10 +91,10 @@ function Book() {
             return (
               <div key={book.id} className="book-con">
                 <div>
-                  <h3>{category ? category.name : 'Uncategorized'}</h3>
-                  <h2>{book.title}</h2>
-                  <h4>{book.author}</h4>
-                  <div>
+                  <h3 className="category">{category ? category.name : 'Uncategorized'}</h3>
+                  <h2 className="title">{book.title}</h2>
+                  <h4 className="author">{book.author}</h4>
+                  <div className="book-links">
                     <p className="book-btn">
                       Comment
                     </p>
@@ -119,12 +119,12 @@ function Book() {
                     />
                   </div>
                 </div>
-                <div>
-                  <p>CURRENT CHAPTER</p>
-                  <h5>Chapter 17</h5>
+                <div className="last-div">
+                  <p className="current-chapter">CURRENT CHAPTER</p>
+                  <h5 className="chapter">Chapter 17</h5>
                   <div>
-                    <button type="button" onClick={() => handleButtonClick(book.id)}>update</button>
-                    <button type="button" onClick={() => handleResetClick(book.id)}>Reset</button>
+                    <button className="progress-btn" type="button" onClick={() => handleButtonClick(book.id)}>Update Progress</button>
+                    <button className="progress-btn" type="button" onClick={() => handleResetClick(book.id)}>Reset</button>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,14 @@
+.category-con {
+  margin: 1.5rem;
+}
+
+.category-h1 {
+  color: #121212;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 35px;
+}
+
+.category-h2 {
+  color: #0290ff;
+  font-size: 20px;
+}

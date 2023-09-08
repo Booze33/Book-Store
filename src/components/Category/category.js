@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../redux/category/categorySlice';
 import Loader from '../Loader/loader';
+import './category.css';
 
 function Category() {
   const dispatch = useDispatch();
@@ -16,18 +17,18 @@ function Category() {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Categories</h1>
+    <div className="category-con">
+      <h1 className="category-h1">Categories</h1>
       {isLoading ? (
         <Loader />
       ) : isError ? (
         <p>Error loading categories.</p>
       ) : (
-        <ul>
+        <div>
           {categories.map((category) => (
-            <li key={category.id}>{category.name}</li>
+            <h2 key={category.id} className="category-h2">{category.name}</h2>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
