@@ -10,6 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { editBook, fetchBooks } from '../../redux/books/bookSlice';
 import { fetchCategories } from '../../redux/category/categorySlice';
+import './bookForm.css';
 
 function EditBook() {
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ function EditBook() {
   return (
     <div className="formCont">
       <form className="bookForm" onSubmit={handleSubmit(onSubmit)}>
+        <h2 className="formTitle">Edit book</h2>
         <div className="inputCont">
           <input
             required={true}
@@ -82,7 +84,7 @@ function EditBook() {
             className="formInput formSelect"
           >
             <option className="carSelector" value="">
-              Select a vehicle
+              Select Genre
             </option>
             {categories.map((category) => (
               <option key={category.id} value={category.id} className="carSelector">
@@ -90,12 +92,23 @@ function EditBook() {
               </option>
             ))}
           </select>
-          {errors.category_id && <span>Select Vehicle Model</span>}
+          {errors.category_id && <span>Select Genre</span>}
         </div>
-        <button type="submit" className="reservationSubmit">
+        <button type="submit" className="book-Submit">
           Update Book
         </button>
       </form>
+      <div className="book-sec">
+        <div className="overlay" />
+        <p className="book-p">
+          Books are more than just pages filled with text; they are vessels of knowledge,
+          emotion, and imagination. They have the power to transport us to distant lands,
+          to introduce us to characters who become our friends,
+          and to spark the flames of creativity and empathy within us.
+          Each book we read is a new adventure, a new opportunity to learn,
+          grow, and explore the infinite possibilities of the human experience.
+        </p>
+      </div>
     </div>
   );
 }

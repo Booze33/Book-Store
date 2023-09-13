@@ -1,11 +1,13 @@
+import './welcome.css';
+
 function Welcome() {
   return (
-    <div>
-      <h1>Welcome</h1>
-      <p>
-        To create API functions to handle registration, login, and logout in your React application,
-        you can use libraries like Axios to make HTTP requests to your backend server.
-        Here are examples of these functions
+    <div className="welcome-con">
+      <h1 className="welcome-h1">Welcome to Our Bookshelf!</h1>
+      <p className="welcome-p">
+        We are delighted to have you join our community of book enthusiasts and readers.
+        Our book app is your gateway to a world of literary adventures, where you can explore,
+        discover, and share your love for books.
       </p>
     </div>
   );

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { addBook } from '../../redux/books/bookSlice';
 import { fetchCategories } from '../../redux/category/categorySlice';
+import './bookForm.css';
 
 function BookForm() {
   const navigate = useNavigate();
@@ -43,12 +44,7 @@ function BookForm() {
   return (
     <div className="formCont">
       <form className="bookForm" onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="formTitle">Test Drive</h2>
-        <p className="formDesc">
-          Book your test drive today for a chance to experience the excitement
-          of driving a supercar! We&rsquo;ll get in touch with you to confirm
-          your reservation and make it happen.
-        </p>
+        <h2 className="formTitle">Add Book</h2>
         <div className="inputCont">
           <input
             required={true}
@@ -73,7 +69,7 @@ function BookForm() {
             className="formInput formSelect"
           >
             <option className="carSelector" value="">
-              Select a vehicle
+              Select Genre
             </option>
             {categories.map((category) => (
               <option key={category.id} value={category.id} className="carSelector">
@@ -81,12 +77,23 @@ function BookForm() {
               </option>
             ))}
           </select>
-          {errors.category_id && <span>Select Vehicle Model</span>}
+          {errors.category_id && <span>Select Genre</span>}
         </div>
-        <button type="submit" className="reservationSubmit">
-          Book Reservation
+        <button type="submit" className="book-Submit">
+          Add Book
         </button>
       </form>
+      <div className="book-sec">
+        <div className="overlay" />
+        <p className="book-p">
+          Books are more than just pages filled with text; they are vessels of knowledge,
+          emotion, and imagination. They have the power to transport us to distant lands,
+          to introduce us to characters who become our friends,
+          and to spark the flames of creativity and empathy within us.
+          Each book we read is a new adventure, a new opportunity to learn,
+          grow, and explore the infinite possibilities of the human experience.
+        </p>
+      </div>
     </div>
   );
 }
