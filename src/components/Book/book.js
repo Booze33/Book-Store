@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-else-return */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -5,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { FaRegMinusSquare, FaRegPlusSquare } from 'react-icons/fa';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { fetchBooks, deleteBook } from '../../redux/books/bookSlice';
 import { fetchCategories } from '../../redux/category/categorySlice';
@@ -24,6 +27,25 @@ function Book() {
     const storedProgressValues = JSON.parse(localStorage.getItem('progressValues')) || {};
     return storedProgressValues;
   });
+
+  const [chapterValues, setChapterValues] = useState(() => {
+    const storedChapterValues = JSON.parse(localStorage.getItem('chapterValues')) || {};
+    return storedChapterValues;
+  });
+
+  const handleChapterClick = (bookId) => {
+    setChapterValues((prevChapters) => ({
+      ...prevChapters,
+      [bookId]: (prevChapters[bookId] || 0) + 1,
+    }));
+  };
+
+  const handleChapterMinus = (bookId) => {
+    setChapterValues((prevChapters) => ({
+      ...prevChapters,
+      [bookId]: (prevChapters[bookId] || 0) - 1,
+    }));
+  };
 
   const handleButtonClick = (bookId) => {
     setProgressValues((prevProgress) => ({
@@ -87,6 +109,7 @@ function Book() {
           {books.map((book) => {
             const category = categories.find((c) => c.id === book.category_id);
             const progress = progressValues[book.id] || 0;
+            const currentChapter = chapterValues[book.id] || 0; // Updated line
 
             return (
               <div key={book.id} className="book-con">
@@ -121,7 +144,11 @@ function Book() {
                 </div>
                 <div className="last-div">
                   <p className="current-chapter">CURRENT CHAPTER</p>
-                  <h5 className="chapter">Chapter 17</h5>
+                  <h5 className="chapter">Chapter {currentChapter} </h5>
+                  <div>
+                    <FaRegPlusSquare onClick={() => handleChapterClick(book.id)} />
+                    <FaRegMinusSquare onClick={() => handleChapterMinus(book.id)} />
+                  </div>
                   <div>
                     <button className="progress-btn" type="button" onClick={() => handleButtonClick(book.id)}>Update Progress</button>
                     <button className="progress-btn" type="button" onClick={() => handleResetClick(book.id)}>Reset</button>
