@@ -91,12 +91,7 @@ function Book() {
     }
   };
 
-  const confirmDelete = (bookId) => {
-    const result = window.confirm('Are you sure you want to delete this book?');
-    if (result) {
-      handleDelete(bookId);
-    }
-  };
+  
 
   return (
     <div>
