@@ -1,18 +1,26 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-boolean-value */
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { addBook } from '../../redux/books/bookSlice';
+import { editBook, fetchBooks } from '../../redux/books/bookSlice';
 import { fetchCategories } from '../../redux/category/categorySlice';
 import './bookForm.css';
 
-function BookForm() {
+function EditBook() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.categories);
+  const { bookId } = useParams();
+
+  const selectedBook = useSelector((state) =>
+    state.books.books.find((b) => b.id === bookId),
+  );
 
   const {
     register,
@@ -27,16 +35,23 @@ function BookForm() {
     },
   });
 
+  useMemo(() => {
+    if (selectedBook) {
+      setValue('title', selectedBook.title);
+      setValue('author', selectedBook.author);
+      setValue('category_id', selectedBook.category_id);
+    }
+  }, [selectedBook, setValue]);
+
   useEffect(() => {
     dispatch(fetchCategories());
+    dispatch(fetchBooks());
   }, [dispatch]);
 
   const onSubmit = (formData) => {
-    dispatch(addBook(formData)).then(() => {
-      setValue('title', '');
-      setValue('author', '');
-      setValue('category_id', '');
-      toast.success('Book added successfully!');
+    const editedBook = { ...formData, id: bookId };
+    dispatch(editBook(editedBook)).then(() => {
+      toast.success('Book edited successfully!');
       navigate('/books');
     });
   };
@@ -44,7 +59,7 @@ function BookForm() {
   return (
     <div className="formCont">
       <form className="bookForm" onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="formTitle">Add Book</h2>
+        <h2 className="formTitle">Edit book</h2>
         <div className="inputCont">
           <input
             required={true}
@@ -80,7 +95,7 @@ function BookForm() {
           {errors.category_id && <span>Select Genre</span>}
         </div>
         <button type="submit" className="book-Submit">
-          Add Book
+          Update Book
         </button>
       </form>
       <div className="book-sec">
@@ -98,4 +113,4 @@ function BookForm() {
   );
 }
 
-export default BookForm;
+export default EditBook;

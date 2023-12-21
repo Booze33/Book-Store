@@ -41,6 +41,9 @@ function Nav() {
               <Link className="nav-link" to="/books">
                 Books
               </Link>
+              <Link className="nav-link" to="/book_form">
+                Add Books
+              </Link>
               <Link className="nav-link" to="/categories">
                 Categories
               </Link>
@@ -89,6 +92,9 @@ function Nav() {
                 <nav>
                   <Link className="nav-link" to="/books" onClick={closeSideMenu}>
                     Books
+                  </Link>
+                  <Link className="nav-link" to="/book_form" onClick={closeSideMenu}>
+                    Add Books
                   </Link>
                   <Link className="nav-link" to="/categories" onClick={closeSideMenu}>
                     Categories

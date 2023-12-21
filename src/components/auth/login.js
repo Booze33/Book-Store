@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../redux/auth/authAction';
+import './auth.css';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -22,12 +23,12 @@ const Login = () => {
 
   return (
     <>
-      <section className="formCont loginFormCont">
-        <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
-          <h1 className="formTitle">Login</h1>
-          <div className="inputCont">
+      <section className="registrationFormCont">
+        <form className="registrationForm" onSubmit={handleSubmit(onSubmit)}>
+          <h1 className="auth-formTitle">Login</h1>
+          <div className="auth-inputCont">
             <input
-              className="formInput"
+              className="auth-formInput"
               type="email"
               name="email"
               placeholder="Email Address"
@@ -39,7 +40,7 @@ const Login = () => {
             )}
 
             <input
-              className="formInput"
+              className="auth-formInput"
               type="password"
               name="password"
               placeholder="Password"
@@ -48,11 +49,7 @@ const Login = () => {
             />
           </div>
           <div className="divider" />
-          <button className="loginSubmit" type="submit">Login</button>
-          <div className="formHelper loginHelper">
-            <p className="helperText">Don&rsquo;t have an account?</p>
-            <a className="helperLink" href="/register">Register</a>
-          </div>
+          <button className="registrationSubmit" type="submit">Login</button>
         </form>
       </section>
     </>

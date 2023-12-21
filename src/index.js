@@ -7,6 +7,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+setTimeout(() => {
+  console.log(store.getState());
+}, 60000);
 root.render(
   <React.StrictMode>
     <Provider store={store}>

@@ -1,0 +1,37 @@
+@media screen and (min-width: 818px) {
+  .welcome-con {
+    margin: 0 5vw 1rem 5vw;
+    padding: 0 5vw 1rem 5vw;
+    display: grid;
+    place-items: center;
+  }
+
+  .welcome-h1 {
+    font-size: 5vw;
+    color: #0290ff;
+  }
+
+  .welcome-p {
+    font-size: 2vw;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 818px) {
+  .welcome-con {
+    margin: 0 5vw 1rem 5vw;
+    padding: 0 5vw 1rem 5vw;
+    display: grid;
+    place-items: center;
+  }
+
+  .welcome-h1 {
+    font-size: 8vw;
+    color: #0290ff;
+  }
+
+  .welcome-p {
+    font-size: 3.5vw;
+    text-align: center;
+  }
+}

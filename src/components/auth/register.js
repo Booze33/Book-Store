@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { registerUser } from '../../redux/auth/authAction';
+import './auth.css';
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -23,18 +24,17 @@ const Registration = () => {
 
   return (
     <>
-      <div className="formCont registrationFormCont">
+      <div className="registrationFormCont">
         <form className="registrationForm" onSubmit={handleSubmit(onSubmit)}>
-          <h2 className="formTitle">Registration</h2>
-
+          <h2 className="auth-formTitle">Registration</h2>
           <div className="inputsCont">
-            <div className="inputCont">
+            <div className="auth-inputCont">
               <input
                 required={true}
                 type="text"
                 name="name"
                 placeholder="Full Name"
-                className="formInput"
+                className="auth-formInput"
                 {...register('name', { required: true })}
               />
 
@@ -43,7 +43,7 @@ const Registration = () => {
                 type="email"
                 name="email"
                 placeholder="E-mail"
-                className="formInput"
+                className="auth-formInput"
                 {...register('email', { required: true })}
               />
             </div>
@@ -54,7 +54,7 @@ const Registration = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
-                className="formInput"
+                className="auth-formInput"
                 {...register('password', { required: true })}
               />
 
@@ -63,7 +63,7 @@ const Registration = () => {
                 type="password"
                 name="password_confirmation"
                 placeholder="Password Confirmation"
-                className="formInput"
+                className="auth-formInput"
                 {...register('password_confirmation', {
                   required: true,
                   validate: (value) =>
@@ -74,10 +74,6 @@ const Registration = () => {
             <div className="divider divider2" />
           </div>
           <button className="registrationSubmit" type="submit">Register</button>
-          <div className="formHelper registrationHelper">
-            <p className="helperText">Already have an account?</p>
-            <a className="helperLink" href="/login">Login</a>
-          </div>
         </form>
       </div>
     </>
